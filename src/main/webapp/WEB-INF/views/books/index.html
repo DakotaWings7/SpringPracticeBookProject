@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Книги</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Имя</th>
+        <th>Автор</th>
+        <th>Год</th>
+    </tr>
+
+    <tr th:each="book : ${books}">
+        <td>
+            <a th:href="@{/books/{id}(id=${book.getId()})}" th:text="${book.getId()}">ID</a>
+        </td>
+        <td th:text="${book.getTitle()}">Name</td>
+        <td th:text="${book.getAuthor()}">Author</td>
+        <td th:text="${book.getPublicationYear()}">Publication Year</td>
+    </tr>
+</table>
+
+<hr/>
+
+<a th:href="@{/books/new}">
+    <button>Добавить книгу</button>
+</a>
+
+</body>
+</html>
