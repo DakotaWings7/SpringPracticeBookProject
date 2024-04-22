@@ -26,8 +26,11 @@
 </div>
 
 <div th:if="${bookOwner}">
-    <p th:text="${'Книга зарезервирована за: ' + bookOwner.get().getName() + ' id: ' + bookOwner.get().getId()}"></p>
+    <p th:text="${'Книга зарезервирована за: '}"></p>
+    <a th:text="${bookOwner.get().getName() + ', id = ' + bookOwner.get().getId()}"
+       th:href="@{/people/{id}(id=${bookOwner.get().getId()})}"></a>
 
+    <br>
     <form th:method="PATCH" th:action="@{/books/{id}/release(id=${book.getId()})}">
         <input type="submit" value="Освободить книгу">
     </form>

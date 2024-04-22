@@ -16,11 +16,12 @@
 
 <div th:if="${!books.isEmpty()}">
     <p> Книги: </p>
-    <table th:each="book : ${books}">
-        <tr th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getPublicationYear()}"> book </tr>
-    </table>
+    <div th:each="book : ${books}">
+        <p style="color : green" th:style="${book.isExpired() ? 'color: red' : 'color: green'}"
+            th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getPublicationYear()}"> book
+        </p>
+    </div>
 </div>
-
 <hr/>
 
 <form th:method="GET" th:action="@{/people/{id}/edit(id=${person.getId()})}">

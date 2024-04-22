@@ -11,6 +11,7 @@ target/
 *.iws
 *.iml
 *.ipr
+src/main/resources/hibernate.properties
 
 ### Eclipse ###
 .apt_generated
