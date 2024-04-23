@@ -4,35 +4,66 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style type="text/css"></style>
     <title> Люди </title>
     <style>
-        table {
+        .table {
             width: 100%;
             border-collapse: collapse;
         }
 
-        table, th, td {
-            border: 1px solid black;
-        }
-
         th, td {
+            border: 1px solid black;
             padding: 8px;
             text-align: left;
         }
 
-        th {
-            background-color: #f2f2f2;
+        th:first-child, td:first-child {
+            width: 10%; /* Ширина колонки ID */
+        }
+
+        th:nth-child(2), td:nth-child(2) {
+            width: 45%; /* Ширина колонки Имя */
+        }
+
+        th:nth-child(3), td:nth-child(3) {
+            width: 45%; /* Ширина колонки Автор */
         }
     </style>
 </head>
 <body>
 
-<table>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand"> Библиотека </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/books}"> Книги <span class="sr-only"> </span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/people}"> Клиенты </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<table class="table">
+    <thead>
     <tr>
-        <th>Имя</th>
         <th>ID</th>
+        <th>Имя</th>
         <th>Возраст</th>
     </tr>
+    </thead>
 
     <tr th:each="person : ${people}">
         <td>
@@ -46,11 +77,8 @@
 <hr/>
 
 <a th:href="@{/people/new}">
-    <button>Добавить человека</button>
+    <button type="button" class="btn btn-primary">Добавить человека</button>
 </a>
-
-<br/>
-<br/>
 
 </body>
 </html>

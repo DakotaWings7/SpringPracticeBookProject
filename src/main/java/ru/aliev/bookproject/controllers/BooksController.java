@@ -28,8 +28,14 @@ public class BooksController {
     public String index(Model model,
                         @RequestParam("sort_by_year") Optional<Boolean> sortByYear,
                         @RequestParam("page") Optional<Integer> page,
-                        @RequestParam("books_per_page") Optional<Integer> booksPerPage) {
+                        @RequestParam("books_per_page") Optional<Integer> booksPerPage,
+                        @RequestParam(value = "title", required = false) Optional<String> title) {
         List<Book> books = booksService.findAll();
+
+        if (title.isPresent()) {
+            model.addAttribute("books", booksService.findBooksByTitleStartingWith(title.get()));
+            return "books/index";
+        }
 
         if (page.isPresent() && booksPerPage.isPresent()) {
             if (sortByYear.isPresent())
